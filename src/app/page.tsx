@@ -1,6 +1,8 @@
 import HomePage from "@/components/organisms/HomePage";
 import { createClient } from "@/prismicio";
 
+export const revalidate = 20;
+
 export async function generateMetadata() {
   const client = createClient();
   const page = await client.getSingle("home_page");
@@ -11,7 +13,7 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Home() {
+export default async function Page() {
   const client = createClient();
   const page = await client.getSingle("home_page");
 
