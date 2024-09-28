@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomePageDocumentDataSlicesSlice = never;
+type HomePageDocumentDataSlicesSlice = TextSliceSlice;
 
 /**
  * Content for Home Page documents
@@ -93,6 +93,36 @@ export type HomePageDocument<Lang extends string = string> =
 
 export type AllDocumentTypes = HomePageDocument;
 
+/**
+ * Default variation for TextSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *TextSlice*
+ */
+type TextSliceSliceVariation = TextSliceSliceDefault;
+
+/**
+ * TextSlice Shared Slice
+ *
+ * - **API ID**: `text_slice`
+ * - **Description**: TextSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextSliceSlice = prismic.SharedSlice<
+  "text_slice",
+  TextSliceSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -118,6 +148,9 @@ declare module "@prismicio/client" {
       HomePageDocumentData,
       HomePageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      TextSliceSlice,
+      TextSliceSliceVariation,
+      TextSliceSliceDefault,
     };
   }
 }
