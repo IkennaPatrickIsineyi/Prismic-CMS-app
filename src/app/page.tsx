@@ -1,7 +1,7 @@
 import HomePage from "@/components/organisms/HomePage";
 import { createClient } from "@/prismicio";
 
-export const revalidate = 20;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   const client = createClient();
